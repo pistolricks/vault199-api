@@ -21,7 +21,15 @@ confirm:
 ## run/api: run the cmd/api application
 .PHONY: run/api
 run/api:
-	go run ./cmd/api -db-dsn=${API_DB_DSN}
+	go run ./cmd/api -db-dsn=${API_DB_DSN} -cors-trusted-origins="http://localhost:3000"
+
+
+## run/api/smtp: run the cmd/api application
+.PHONY: run/api/mail
+run/api/mail:
+	go run ./cmd/api -db-dsn=${API_DB_DSN} -cors-trusted-origins="http://localhost:3000" -smtp-username=${MAIL_TEST_USERNAME} -smtp-password=${MAIL_TEST_PASSWORD}
+
+
 
 ## db/psql: connect to the database using psql
 .PHONY: db/psql
@@ -39,6 +47,14 @@ db/migrations/new:
 db/migrations/up: confirm
 	@echo 'Running up migrations...'
 	migrate -path ./migrations -database ${API_DB_DSN} up
+
+## db/migrations/up: apply all up database migrations
+.PHONY: db/migrations/down
+db/migrations/down: confirm
+	@echo 'Running up migrations...'
+	migrate -path ./migrations -database ${API_DB_DSN} down
+
+
 
 ## db/migrations/up: apply all up database migrations
 .PHONY: db/migrations/force
