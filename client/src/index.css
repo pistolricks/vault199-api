@@ -1,0 +1,166 @@
+@import 'tailwindcss';
+@import url(https://fonts.googleapis.com/css?family=VT323);
+
+@plugin"tailwindcss-animate";
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+
+:root {
+  font-family: "VT323", monospace;
+  font-weight: 400;
+  --primary-color: #ffd52c;
+  --secondary-color: #ff5c00;
+  --tertiary-color: #c72d04;
+  --background-color: #111;
+  scrollbar-color: var(--primary-color) var(--secondary-color);
+  font-size: clamp(18px, 3vw, 30px);
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--background-color);
+  cursor: url('./static/images/crosshair.png'), auto;
+}
+
+main {
+  overflow: hidden;
+}
+
+section {
+  height: 100%;
+  overflow: hidden auto;
+  margin: 1rem 0;
+}
+
+h1, h2, h3 h4, h5, h6 {
+  font-weight: normal;
+  margin: 0;
+  text-transform: uppercase;
+}
+h4 b {
+  color: white;
+}
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover {
+  color: red;
+}
+
+.selected {
+  color: red;
+}
+
+p {
+  line-height: 100%;
+  margin: 0;
+}
+
+span { animation: blink 1s infinite }
+
+ul {
+  list-style: none;
+}
+
+
+
+
+
+
+textarea {
+  background: transparent;
+  border: none;
+  color: #00dd00;
+  display: block;
+  float: left;
+  font-family: 'VT323', Courier;
+  font-size: 1.2em;
+  position: relative;
+  width: 80%;
+  z-index: 10
+}
+
+textarea {
+  margin-bottom: 20px;
+  overflow: auto;
+  resize: none;
+}
+
+
+
+
+
+
+@theme {
+
+}
+
+div.retro-container {
+  width: 90vw;
+  height: 90vh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  overflow: hidden;
+  padding: 0.5rem;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  mask-image: linear-gradient(to bottom, #0005 50%, #000 50%);
+  mask-size: 100% 2px;
+  text-shadow: 0 0 0.5rem;
+}
+
+@keyframes blink-bg {
+  0%, 60% {
+    text-shadow: 0 0 10.5rem;
+    color: var(--primary-color);
+  }
+  70%, 100% {
+    text-shadow: 0 0 20.5rem;
+    color: var(--tertiary-color);
+  }
+}
+
+.alert {
+  animation: blink-bg 1s ease-out infinite;
+}
+
+@keyframes grid {
+  0% {
+    transform: translateY(-50%)
+  }
+  100% {
+    transform: translateY(0)
+  }
+}
+
+.grid {
+  animation: grid 15s linear infinite;
+}
