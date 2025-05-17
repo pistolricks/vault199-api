@@ -21,13 +21,13 @@ confirm:
 ## run/api: run the cmd/api application
 .PHONY: run/api
 run/api:
-	go run ./cmd/api -db-dsn=${API_DB_DSN} -cors-trusted-origins="http://localhost:3000"
+	go run ./cmd/api -db-dsn=${API_DB_DSN} -cors-trusted-origins="http://vault199.com"
 
 
 ## run/api/smtp: run the cmd/api application
 .PHONY: run/api/mail
 run/api/mail:
-	go run ./cmd/api -db-dsn=${API_DB_DSN} -cors-trusted-origins="http://localhost:3000" -smtp-username=${MAIL_TEST_USERNAME} -smtp-password=${MAIL_TEST_PASSWORD}
+	go run ./cmd/api -db-dsn=${API_DB_DSN} -cors-trusted-origins="http://vault199.com" -smtp-username=${MAIL_TEST_USERNAME} -smtp-password=${MAIL_TEST_PASSWORD}
 
 
 
